@@ -43,22 +43,18 @@ int main(int argc, char * argv[])
 //pid > 0 for write
 //child pid for read
 	if (pid > 0){
-	i = 8;	
-	do
-  	{
+	do{
 		//write 
-	
 	ch = getchar();
 	buf[i++]=ch;
 	fputc(ch, fd1);
 		if (ch == 10) {
 			lf = open("logfile.txt", O_WRONLY | O_CREAT| O_APPEND, 0600);
-			strcpy(buf,"server: ");	
 			fflush(fd1);
+			write(lf,"server: ", 8 );	
 			write(lf,buf,i); 
 			close(lf);
 			memset(buf,'\0',i+1);
-			i=8;
 		}
 	
 	}while (ch != 'q');
