@@ -11,13 +11,13 @@
 
 int main(int argc, char * argv[])
 {
-  FILE * fd1;
-	FILE * fd2;
-	int lf;
-  char ch;
-	pid_t pid; //pid for forking
-	char buf[1024];
-	int i;
+FILE * fd1;
+FILE * fd2;
+int lf;
+char ch;
+pid_t pid; //pid for forking
+char buf[1024];
+int i;
 
 	i = 0;
 	mkfifo(FIFO_NAME_1, 0600);
