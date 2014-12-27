@@ -12,10 +12,10 @@ int main(int argc, char * argv[])
 {
   FILE * fd1;
 	FILE * fd2;
+	int lf;
   char ch;
 	pid_t pid; //pid for forking
 	char buf[1024];
-	int lf = open("logfile.txt", O_WRONLY | O_CREAT| O_TRUNC, 0600);
 
 	
 	mkfifo(FIFO_NAME_1, 0600);
@@ -44,6 +44,7 @@ int main(int argc, char * argv[])
 	  do
   	{
 		//write 
+    lf = open("logfile.txt", O_WRONLY | O_CREAT| O_TRUNC, 0600);
     ch = getchar();
     fputc(ch, fd1);
     if (ch == 10) fflush(fd1);
