@@ -3,6 +3,7 @@
 #include <sys/stat.h>
 #include <fcntl.h>
 #include <unistd.h>
+#include <string.h>
 
 #define FIFO_NAME_1 "./fifofile1" //for server write 
 #define FIFO_NAME_2 "./fifofile2" //for client write
@@ -16,8 +17,9 @@ int main(int argc, char * argv[])
   char ch;
 	pid_t pid; //pid for forking
 	char buf[1024];
+	int i;
 
-	
+	i = 0;
 	mkfifo(FIFO_NAME_1, 0600);
 	mkfifo(FIFO_NAME_2, 0600);
   
@@ -41,22 +43,31 @@ int main(int argc, char * argv[])
 //pid > 0 for write
 //child pid for read
 	if (pid > 0){
-	  do
+	i = 8;	
+	do
   	{
 		//write 
-    lf = open("logfile.txt", O_WRONLY | O_CREAT| O_TRUNC, 0600);
-    ch = getchar();
-    fputc(ch, fd1);
-    if (ch == 10) fflush(fd1);
-		}while (ch != 'q');
-	}
-	else{
-		
+	
+	ch = getchar();
+	buf[i++]=ch;
+	fputc(ch, fd1);
+		if (ch == 10) {
+			lf = open("logfile.txt", O_WRONLY | O_CREAT| O_APPEND, 0600);
+			strcpy(buf,"server: ");	
+			fflush(fd1);
+			write(lf,buf,i); 
+			close(lf);
+			memset(buf,'\0',i+1);
+			i=8;
+		}
+	
+	}while (ch != 'q');
+	}else{
 		do{
-			//read
-			ch = fgetc(fd2);
-			putchar(ch);
-  	} while (ch != 'q');
+		//read
+		ch = fgetc(fd2);
+		putchar(ch);
+  		} while (ch != 'q');
 	}
 
   fclose(fd1);
