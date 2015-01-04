@@ -1,7 +1,7 @@
 all: msgdemo polymsgdemo shmemdemo semdemo
 msgdemo:
-	gcc msgserv.c -o msgserv
-	gcc msgcli.c -o msgcli
+	gcc msgserv.c -o msgserv -g
+	gcc msgcli.c -o msgcli -g
 polymsgdemo:
 	gcc polymsgserv.c -o polymsgserv
 	gcc polymsgcli.c -o polymsgcli
