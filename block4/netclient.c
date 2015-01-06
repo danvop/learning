@@ -38,7 +38,7 @@ int main(int argc, char ** argv)
     serv_addr.sin_family = AF_INET;
     memcpy(&serv_addr.sin_addr.s_addr, server->h_addr, server->h_length);//was memcpy
     serv_addr.sin_port = htons(port);
-    if (connect(sock, &serv_addr, sizeof(serv_addr)) < 0) 
+    if (connect(sock,(const struct sockaddr*) &serv_addr, sizeof(serv_addr)) < 0) 
     {
       printf("connect() failed: %d", errno);
       return EXIT_FAILURE;
