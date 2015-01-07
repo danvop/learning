@@ -2,7 +2,7 @@ all: runme nozombies system
 runme:
 	gcc run.c -o runme
 nozombies:
-	gcc nozombies.c -o nozombies
+	gcc nozombies.c -o nozombies -g
 system:
 	gcc system.c -o system
 install:

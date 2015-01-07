@@ -4,7 +4,7 @@
 #include <stdio.h>
 #include <signal.h>
 
-void child_handler(int i) 
+void child_handler(int i)
 {
    int status;
    wait(&status);
