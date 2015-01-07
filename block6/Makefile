@@ -1,6 +1,6 @@
 all: run nozombies system 
 run:
-	gcc run.c -o run
+	gcc run.c -o runme
 nozombies:
 	gcc nozombies.c -o nozombies
 system:
