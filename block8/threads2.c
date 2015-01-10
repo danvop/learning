@@ -32,7 +32,7 @@ int main(int argc, char * argv[])
    id = 2;
    result = pthread_create(&thread2, NULL, thread_func, &id);
    if (result != 0) {
-     perror("Creating the first thread");
+     perror("Creating the second thread");
      return EXIT_FAILURE;
    }
    result = pthread_join(thread1, NULL);

@@ -26,7 +26,7 @@ main()
 
 void *thread_function(void *dummyPtr)
 {
-   printf("Thread number %ld\n", pthread_self());
+   printf("Thread number %lu\n", (unsigned long)pthread_self());
    pthread_mutex_lock( &mutex1 );
    counter++;
    pthread_mutex_unlock( &mutex1 );
